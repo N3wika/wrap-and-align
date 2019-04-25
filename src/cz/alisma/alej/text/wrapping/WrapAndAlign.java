@@ -32,8 +32,25 @@ public class WrapAndAlign {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         ParagraphDetector pd = new ParagraphDetector(input);
-        Aligner aligner = new LeftAligner();
-
+        
+        if (args.length == 0){
+        	 Aligner aligner = new LeftAligner();
+        }
+        	//ZJEDNODUSIT
+        if (args.length > 1){
+        
+        	if (args[0] == "--right"){
+        		Aligner aligner = new RightAligner();
+        	} else if (args[0] == "--center" || args[0] == "--centre"){
+        		Aligner aligner = new CenterAligner();
+        	} else if (args[0] == "--justify"){
+        		Aligner aligner = new JustifyAligner();
+        	}
+        	
+        	if (args[1] == "-w"){
+        		//DOPSAT
+        	}
+        }
         while (pd.hasNextParagraph()) {
             Paragraph para = pd.nextParagraph();
             LinePrinter line = new LinePrinter(System.out, MAX_WIDTH, aligner);

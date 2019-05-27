@@ -33,10 +33,13 @@ public class WrapAndAlign {
         Scanner input = new Scanner(System.in);
         ParagraphDetector pd = new ParagraphDetector(input);
         
+        int delkaRadek;
+        
         if (args.length == 0){
         	 Aligner aligner = new LeftAligner();
+        	 delkaRadek = MAX_WIDTH;
         }
-        	//ZJEDNODUSIT
+        	
         if (args.length > 1){
         
         	if (args[0] == "--right"){
@@ -48,7 +51,9 @@ public class WrapAndAlign {
         	}
         	
         	if (args[1] == "-w"){
-        		//DOPSAT
+        		int pozadovanaDelka = (args[2]);
+        	    delkaRadek = pozadovanaDelka;
+        		
         	}
         }
         while (pd.hasNextParagraph()) {

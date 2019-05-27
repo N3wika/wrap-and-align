@@ -27,41 +27,59 @@ package cz.alisma.alej.text.wrapping;
 import java.util.Scanner;
 
 public class WrapAndAlign {
+
     private static final int MAX_WIDTH = 50;
 
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        ParagraphDetector pd = new ParagraphDetector(input);
-        
-        int delkaRadek;
-        
-        if (args.length == 0){
-        	 Aligner aligner = new LeftAligner();
-        	 delkaRadek = MAX_WIDTH;
+
+    public static void main( String[] args ) {
+        Scanner input = new Scanner( System.in );
+        ParagraphDetector pd = new ParagraphDetector( input );
+
+        //LeftAligner je defaultni zarovnani, MAX_WIDTH je defaultni delka
+        Aligner aligner = new LeftAligner();
+        int delkaRadek = MAX_WIDTH;
+
+        for ( String prepinacZarovnani : args ) {
+            switch ( prepinacZarovnani ) {
+                case "--right":
+                    aligner = new RightAligner();
+                    break;
+                case "--justify":
+                    aligner = new JustifyAligner();
+
+                case "--center":
+                case "--centre":
+                    aligner = new CenterAligner();
+                default:
+                    aligner = new LeftAligner();
+            }
         }
-        	
-        if (args.length > 1){
-        
-        	if (args[0] == "--right"){
-        		Aligner aligner = new RightAligner();
-        	} else if (args[0] == "--center" || args[0] == "--centre"){
-        		Aligner aligner = new CenterAligner();
-        	} else if (args[0] == "--justify"){
-        		Aligner aligner = new JustifyAligner();
-        	}
-        	
-        	if (args[1] == "-w"){
-        		int pozadovanaDelka = (args[2]);
-        	    delkaRadek = pozadovanaDelka;
-        		
-        	}
+
+        boolean dalsiJeDelka = false;
+        for ( String prepinacDelka : args ) {
+            if ( dalsiJeDelka == true ) {
+                delkaRadek = Integer.parseInt( prepinacDelka );
+            }
+            if ( prepinacDelka.startsWith( "--width" ) ) {
+                String[] oddeleniDelky = prepinacDelka.split( "=" );
+                delkaRadek = Integer.parseInt( oddeleniDelky[1] );
+            }
+            switch ( prepinacDelka ) {
+                //pripraveno pro moznost pridani dalsiho prepinace 
+                case "--w":
+                    dalsiJeDelka = true;
+                    break;
+                default:
+                    delkaRadek = MAX_WIDTH;
+            }
         }
-        while (pd.hasNextParagraph()) {
+
+        while ( pd.hasNextParagraph() ) {
             Paragraph para = pd.nextParagraph();
-            LinePrinter line = new LinePrinter(System.out, MAX_WIDTH, aligner);
-            while (para.hasNextWord()) {
+            LinePrinter line = new LinePrinter( System.out, delkaRadek, aligner );
+            while ( para.hasNextWord() ) {
                 String word = para.nextWord();
-                line.addWord(word);
+                line.addWord( word );
             }
             line.flush();
             System.out.println();

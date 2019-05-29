@@ -45,7 +45,7 @@ public class LinePrinterTest {
         }
 	    
         @Override
-        public String format(List<String> words) {
+        public String format(List<String> words, int delkaRadek) {
             assertFalse(expected.isEmpty());
             List<String> exp = expected.remove(0);
             assertEquals(exp, words);

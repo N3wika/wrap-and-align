@@ -45,14 +45,11 @@ public class RightAligner implements Aligner {
         
         //lepeni mezer na zacatek
         
-        String mezeryKNalepeni = "";
-        if (result.length() < delkaRadek) {
-            
-            while (result.length() + mezeryKNalepeni.length() < delkaRadek) {
-                mezeryKNalepeni += " ";
-            }
-            result.insert( 0, mezeryKNalepeni );
+        while (result.length() < delkaRadek) {
+            result.insert( 0, " " );
         }
+            
+        
         return result.toString();
     }
 

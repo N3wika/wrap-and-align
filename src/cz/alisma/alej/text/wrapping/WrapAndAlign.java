@@ -31,6 +31,12 @@ public class WrapAndAlign {
 
     private static final int MAX_WIDTH = 50;
 
+    enum Alignment {
+        Left,
+        Right,
+        Justify,
+        Center
+    };
 
     public static void main( String[] args ) {
         Scanner input = new Scanner( System.in );
@@ -40,6 +46,9 @@ public class WrapAndAlign {
         Aligner aligner = new LeftAligner();
         int delkaRadek = MAX_WIDTH;
 
+        Alignment alignement = Alignment.Left;
+        
+        //PØEPSAT NA enum A SLEPIT S DÉLKOU
         for ( String prepinacZarovnani : args ) {
             switch ( prepinacZarovnani ) {
                 case "--right":

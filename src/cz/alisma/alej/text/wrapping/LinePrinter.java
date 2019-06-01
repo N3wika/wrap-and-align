@@ -31,10 +31,12 @@ import java.util.List;
 
 /** Wraps printed lines. */
 public class LinePrinter {
-    private int width;
-    private PrintStream output;
-    private Aligner aligner;
+
+    private int          width;
+    private PrintStream  output;
+    private Aligner      aligner;
     private List<String> words;
+
 
     /** Constructor.
      * 
@@ -42,17 +44,19 @@ public class LinePrinter {
      * @param w Maximum output width.
      * @param align Aligner to use.
      */
-    public LinePrinter(PrintStream out, int w, Aligner align) {
+    public LinePrinter( PrintStream out, int w, Aligner align ) {
         output = out;
         width = w;
         aligner = align;
         words = new ArrayList<>();
     }
 
+
     /** Add a word to be printed. */
-    public void addWord(String word) {
-        words.add(word);
+    public void addWord( String word ) {
+        words.add( word );
     }
+
 
     /** Flush the content to the output.
      * 
@@ -61,21 +65,21 @@ public class LinePrinter {
     public void flush() {
         int lengthSoFar = -1;
         List<String> line = new ArrayList<>();
-        
-        for (String word : words) {
-            if (lengthSoFar + 1 + word.length() >= width) {
-                output.println(aligner.format(line, width));
+
+        for ( String word : words ) {
+            if ( lengthSoFar + 1 + word.length() >= width ) {
+                output.println( aligner.format( line, width ) );
                 line.clear();
                 lengthSoFar = -1;
             } else {
                 lengthSoFar++;
             }
-            line.add(word);
+            line.add( word );
             lengthSoFar += word.length();
         }
-        
-        if (!line.isEmpty()) {
-            output.println(aligner.format(line, width));
+
+        if ( !line.isEmpty() ) {
+            output.println( aligner.format( line, width ) );
         }
     }
 

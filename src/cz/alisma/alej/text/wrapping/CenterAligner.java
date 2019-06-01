@@ -49,11 +49,11 @@ public class CenterAligner implements Aligner {
 
         int celkemMezer = delkaRadek - result.length();
         int tolikMezerKNalepeni = celkemMezer / 2;
-        
-        for (int i = 0; i < tolikMezerKNalepeni; i++) {
+
+        for ( int i = 0; i < tolikMezerKNalepeni; i++ ) {
             result.insert( 0, " " );
         }
-        
+
         return result.toString();
     }
 

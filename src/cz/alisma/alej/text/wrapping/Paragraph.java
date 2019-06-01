@@ -29,27 +29,31 @@ import java.util.Scanner;
 
 /** Paragraph of text. */
 public class Paragraph {
+
     private Scanner words;
-    private String content;
+    private String  content;
+
 
     /** Constructs the paragraph from list of lines.
      * 
      * @param lines Lines composing the paragraph.
      */
-    public Paragraph(List<String> lines) {
+    public Paragraph( List<String> lines ) {
         StringBuilder builder = new StringBuilder();
-        for (String line : lines) {
-            builder.append(line);
-            builder.append("\n");
+        for ( String line : lines ) {
+            builder.append( line );
+            builder.append( "\n" );
         }
         content = builder.toString();
-        words = new Scanner(content);
+        words = new Scanner( content );
     }
+
 
     /** Tells whether there is another word not yet read in the paragraph. */
     public boolean hasNextWord() {
         return words.hasNext();
     }
+
 
     /** Get the next word from the paragraph.
      * 
@@ -58,6 +62,7 @@ public class Paragraph {
     public String nextWord() {
         return words.next();
     }
+
 
     /** Debugging only: get content as a string.
      *

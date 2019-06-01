@@ -75,11 +75,9 @@ public class WrapAndAlign {
             }
             switch ( prepinacDelka ) {
                 //pripraveno pro moznost pridani dalsiho prepinace 
-                case "--w":
+                case "-w":
                     dalsiJeDelka = true;
                     break;
-                default:
-                    delkaRadek = MAX_WIDTH;
             }
         }
 

@@ -45,7 +45,8 @@ public class JustifyAligner implements Aligner {
         double mezery = 0.0;
         for ( String w : words ) {
 
-            for ( ; mezery > 0.0; mezery -= 1.0 ) {
+            //1e-5 je kamarad a brani zaokrouhlovacim chybam, aby vystrkovaly ruzky
+            for ( ; mezery > 1e-5; mezery -= 1.0 ) {
                 result.append( " " );
             }
             result.append( w );

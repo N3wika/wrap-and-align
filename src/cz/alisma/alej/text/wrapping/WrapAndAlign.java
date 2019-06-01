@@ -32,11 +32,9 @@ public class WrapAndAlign {
     private static final int MAX_WIDTH = 50;
 
     enum Alignment {
-        Left,
-        Right,
-        Justify,
-        Center
+        Left, Right, Justify, Center
     };
+
 
     public static void main( String[] args ) {
         Scanner input = new Scanner( System.in );
@@ -46,22 +44,23 @@ public class WrapAndAlign {
         Aligner aligner = new LeftAligner();
         int delkaRadek = MAX_WIDTH;
 
-        Alignment alignement = Alignment.Left;
-        
-        //PØEPSAT NA enum A SLEPIT S DÉLKOU
+        Alignment alignment = Alignment.Left;
+
         for ( String prepinacZarovnani : args ) {
             switch ( prepinacZarovnani ) {
+                case "--left":
+                    alignment = Alignment.Left;
+                    break;
                 case "--right":
-                    aligner = new RightAligner();
+                    alignment = Alignment.Right;
                     break;
                 case "--justify":
-                    aligner = new JustifyAligner();
-
+                    alignment = Alignment.Justify;
+                    break;
                 case "--center":
                 case "--centre":
-                    aligner = new CenterAligner();
-                default:
-                    aligner = new LeftAligner();
+                    alignment = Alignment.Center;
+                    break;
             }
         }
 
@@ -82,6 +81,21 @@ public class WrapAndAlign {
                 default:
                     delkaRadek = MAX_WIDTH;
             }
+        }
+
+        switch ( alignment ) {
+            case Center:
+                aligner = new CenterAligner();
+                break;
+            case Justify:
+                aligner = new JustifyAligner();
+                break;
+            case Left:
+                aligner = new LeftAligner();
+                break;
+            case Right:
+                aligner = new RightAligner();
+                break;
         }
 
         while ( pd.hasNextParagraph() ) {

@@ -47,17 +47,13 @@ public class CenterAligner implements Aligner {
         //lepeni mezer na zacatek
         //aby byly mezery pred i za textem tak se lepi jen kazda druha
 
-        String mezeryKNalepeni = "";
-        if ( result.length() < delkaRadek ) {
-            int pruchod = 0;
-            while ( result.length() + mezeryKNalepeni.length() < delkaRadek ) {
-                if ( pruchod % 2 == 0 ) {
-                    mezeryKNalepeni += " ";
-                }
-                pruchod++;
-            }
-            result.insert( 0, mezeryKNalepeni );
+        int celkemMezer = delkaRadek - result.length();
+        int tolikMezerKNalepeni = celkemMezer / 2;
+        
+        for (int i = 0; i < tolikMezerKNalepeni; i++) {
+            result.insert( 0, " " );
         }
+        
         return result.toString();
     }
 

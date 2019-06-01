@@ -38,61 +38,66 @@ public class AllAlignerTest {
         List<String> words = new ArrayList<String>();
         words.add( "hello" );
         words.add( "world" );
-        String result = aligner.format( words , 16 );
-        assertEquals("Whoa", "hello world", result);
+        String result = aligner.format( words, 16 );
+        assertEquals( "Whoa", "hello world", result );
     }
-    
+
+
     @Test
     public void rightAlignerTest() {
         Aligner aligner = new RightAligner();
         List<String> words = new ArrayList<String>();
         words.add( "hello" );
         words.add( "world" );
-        String result = aligner.format( words , 16 );
-        assertEquals("Whoa", "     hello world", result);
+        String result = aligner.format( words, 16 );
+        assertEquals( "Whoa", "     hello world", result );
     }
-    
+
+
     @Test
     public void centerAlignerTest() {
         Aligner aligner = new CenterAligner();
         List<String> words = new ArrayList<String>();
         words.add( "hello" );
         words.add( "world" );
-        String result = aligner.format( words , 17 );
-        assertEquals("Whoa", "   hello world", result);
+        String result = aligner.format( words, 17 );
+        assertEquals( "Whoa", "   hello world", result );
     }
-    
+
+
     @Test
     public void justifyAlignerTest() {
         Aligner aligner = new JustifyAligner();
         List<String> words = new ArrayList<String>();
         words.add( "hello" );
         words.add( "world" );
-        words.add(":)");
-        String result = aligner.format( words , 16 );
-        assertEquals("Whoa", "hello  world  :)", result);
+        words.add( ":)" );
+        String result = aligner.format( words, 16 );
+        assertEquals( "Whoa", "hello  world  :)", result );
     }
-    
+
+
     @Test
     public void justifyAlignerTest2() {
         Aligner aligner = new JustifyAligner();
         List<String> words = new ArrayList<String>();
         words.add( "hello" );
         words.add( "world" );
-        words.add(":)");
-        String result = aligner.format( words , 17 );
-        assertEquals("Whoa", "hello   world  :)", result);
+        words.add( ":)" );
+        String result = aligner.format( words, 17 );
+        assertEquals( "Whoa", "hello   world  :)", result );
     }
-    
+
+
     @Test
     public void justifyAlignerTest3() {
         Aligner aligner = new JustifyAligner();
         List<String> words = new ArrayList<String>();
         words.add( "Tohle" );
         words.add( "je" );
-        words.add("rozvrstvene");
-        words.add("dobre.");
-        String result = aligner.format( words , 30 );
-        assertEquals("Whoa", "Tohle  je  rozvrstvene  dobre.", result);
+        words.add( "rozvrstvene" );
+        words.add( "dobre." );
+        String result = aligner.format( words, 30 );
+        assertEquals( "Whoa", "Tohle  je  rozvrstvene  dobre.", result );
     }
 }
